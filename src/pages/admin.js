@@ -9,16 +9,17 @@ export async function AdminPage() {
     },
   ];
 
-  const template = `
-    <div class="admin-container">
-      <div class="security-warning">
-        ⚠️ WARNING: This is an unsecured demo page. Do not use in production!
-      </div>
-      
-      <h2>Product Management</h2>
-      ${AdminProductList(products)}
+  const element = document.createElement("div");
+  element.className = "admin-container";
+
+  element.innerHTML = `
+    <div class="security-warning">
+      ⚠️ WARNING: This is an unsecured demo page. Do not use in production!
     </div>
+    <h2>Product Management</h2>
   `;
 
-  return template;
+  element.appendChild(AdminProductList(products));
+
+  return element;
 }

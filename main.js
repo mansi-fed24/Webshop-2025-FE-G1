@@ -25,9 +25,7 @@ async function renderPage() {
     app.innerHTML = "";
 
     // Add header
-    const headerElement = document.createElement("div");
-    headerElement.innerHTML = Header();
-    app.appendChild(headerElement);
+    app.appendChild(Header());
 
     // Add main content
     const mainElement = document.createElement("main");
@@ -36,21 +34,25 @@ async function renderPage() {
     app.appendChild(mainElement);
 
     // Add footer
-    const footerElement = document.createElement("div");
-    footerElement.innerHTML = Footer();
-    app.appendChild(footerElement);
+    app.appendChild(Footer());
   } catch (error) {
     console.error("Error rendering page:", error);
-    app.innerHTML = `
-      ${Header()}
-      <main class="main-content">
-        <div class="error-message">
-          <h2>Something went wrong</h2>
-          <p>Please try again later</p>
-        </div>
-      </main>
-      ${Footer()}
+    app.innerHTML = "";
+
+    // Even in error state, maintain layout
+    app.appendChild(Header());
+
+    const errorMain = document.createElement("main");
+    errorMain.className = "main-content";
+    errorMain.innerHTML = `
+      <div class="error-message">
+        <h2>Something went wrong</h2>
+        <p>Please try again later</p>
+      </div>
     `;
+    app.appendChild(errorMain);
+
+    app.appendChild(Footer());
   }
 }
 

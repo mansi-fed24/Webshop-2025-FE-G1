@@ -1,24 +1,28 @@
 import { AdminProductRow } from "./AdminProductRow.js";
 
 export function AdminProductList(products = []) {
-  console.log(products);
-  const template = `
-    <div class="admin-products">
-      <table class="product-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${products.map((product) => AdminProductRow(product)).join("")}
-        </tbody>
-      </table>
-    </div>
+  const container = document.createElement("div");
+  container.className = "admin-products";
+
+  container.innerHTML = `
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+    </table>
   `;
 
-  return template;
+  const tbody = document.createElement("tbody");
+  products.forEach((product) => {
+    tbody.appendChild(AdminProductRow(product));
+  });
+
+  container.querySelector("table").appendChild(tbody);
+
+  return container;
 }
