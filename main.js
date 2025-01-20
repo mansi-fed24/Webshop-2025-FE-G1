@@ -1,37 +1,47 @@
-import './style.css'
-import { Header } from './src/components/Header.js'
-import { Footer } from './src/components/Footer.js'
-import { ProductList } from './src/components/ProductList.js'
-import { LoginPage } from './src/pages/login.js'
-import { AdminPage } from './src/pages/admin.js'
+import { Header } from "./src/components/Header.js";
+import { Footer } from "./src/components/Footer.js";
+import { LoginPage } from "./src/pages/login.js";
+import { AdminPage } from "./src/pages/admin.js";
+import { HomePage } from "./src/pages/home.js";
+import { NotFound } from "./src/components/NotFound.js";
 
-function renderPage() {
-  console.log('renderPage');
+async function renderPage() {
+  console.log("renderPage");
   const path = window.location.pathname;
-  let mainContent = '';
+  let mainContent = "";
 
-  switch(path) {
-    case '/login':
+  try {
+    if (path.includes("/login")) {
       mainContent = LoginPage();
-      break;
-    case '/admin':
-      mainContent = AdminPage();
-      break;
-    default:
-      mainContent = `
-        <h1>Welcome to Hakim Livs</h1>
-        ${ProductList()}
-      `;
-  }
+    } else if (path.includes("/admin")) {
+      mainContent = await AdminPage();
+    } else if (path === "/" || path.includes("/index")) {
+      mainContent = await HomePage();
+    } else {
+      mainContent = NotFound();
+    }
 
-  document.querySelector('#app').innerHTML = `
-    ${Header()}
-    <main class="main-content">
-      ${mainContent}
-    </main>
-    ${Footer()}
-  `;
+    document.querySelector("#app").innerHTML = `
+      ${Header()}
+      <main class="main-content">
+        ${mainContent}
+      </main>
+      ${Footer()}
+    `;
+  } catch (error) {
+    console.error("Error rendering page:", error);
+    document.querySelector("#app").innerHTML = `
+      ${Header()}
+      <main class="main-content">
+        <div class="error-message">
+          <h2>Something went wrong</h2>
+          <p>Please try again later</p>
+        </div>
+      </main>
+      ${Footer()}
+    `;
+  }
 }
 
 renderPage();
-window.addEventListener('popstate', renderPage);
+window.addEventListener("popstate", renderPage);
