@@ -1,11 +1,23 @@
 export function ProductCard(product) {
-  const template = `
+  const element = document.createElement("div");
+
+  element.innerHTML = `
     <div class="product-card">
       <h3>${product.name}</h3>
       <p>$${product.price}</p>
-      <button onclick="alert('Added to cart')">Add to Cart</button>
+      <button class="add-to-cart-btn">Add to Cart</button>
     </div>
   `;
 
-  return template;
+  // Add event listener
+  element.querySelector(".add-to-cart-btn").addEventListener("click", () => {
+    handleAddToCart(product);
+  });
+
+  return element;
+}
+
+function handleAddToCart(product) {
+  console.log(`Adding ${product.name} to cart`);
+  // Add cart logic here
 }

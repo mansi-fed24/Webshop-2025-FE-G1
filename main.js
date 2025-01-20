@@ -6,9 +6,9 @@ import { HomePage } from "./src/pages/home.js";
 import { NotFound } from "./src/components/NotFound.js";
 
 async function renderPage() {
-  console.log("renderPage");
+  const app = document.querySelector("#app");
   const path = window.location.pathname;
-  let mainContent = "";
+  let mainContent;
 
   try {
     if (path.includes("/login")) {
@@ -21,16 +21,27 @@ async function renderPage() {
       mainContent = NotFound();
     }
 
-    document.querySelector("#app").innerHTML = `
-      ${Header()}
-      <main class="main-content">
-        ${mainContent}
-      </main>
-      ${Footer()}
-    `;
+    // Clear existing content
+    app.innerHTML = "";
+
+    // Add header
+    const headerElement = document.createElement("div");
+    headerElement.innerHTML = Header();
+    app.appendChild(headerElement);
+
+    // Add main content
+    const mainElement = document.createElement("main");
+    mainElement.className = "main-content";
+    mainElement.appendChild(mainContent);
+    app.appendChild(mainElement);
+
+    // Add footer
+    const footerElement = document.createElement("div");
+    footerElement.innerHTML = Footer();
+    app.appendChild(footerElement);
   } catch (error) {
     console.error("Error rendering page:", error);
-    document.querySelector("#app").innerHTML = `
+    app.innerHTML = `
       ${Header()}
       <main class="main-content">
         <div class="error-message">

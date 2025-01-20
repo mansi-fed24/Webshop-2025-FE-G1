@@ -1,11 +1,12 @@
 import { ProductCard } from "./ProductCard.js";
 
 export function ProductList(products = []) {
-  const template = `
-    <div class="products">
-      ${products.map((product) => ProductCard(product)).join("")}
-    </div>
-  `;
+  const element = document.createElement("div");
+  element.className = "products";
 
-  return template;
+  products.forEach((product) => {
+    element.appendChild(ProductCard(product));
+  });
+
+  return element;
 }
