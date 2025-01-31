@@ -72,9 +72,10 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  box-sizing: border-box;
 }
 
-.products {
+#products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
