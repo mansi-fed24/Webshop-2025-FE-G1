@@ -1,0 +1,171 @@
+/* style the sidebar */
+
+.admin-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    background: linear-gradient(180deg, #D32F2F, #FF5733); /* Red Gradient */
+    color: white;
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .nav-links {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .nav-links li {
+    margin: 15px 0;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+  
+  .nav-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .content {
+    flex: 1;
+    margin-left: 220px; /* not Same width as sidebar as i  wanted to have no space between the contaoner header */
+   
+    background: #F5F6FA; /* Light Gray Background */
+  }
+  
+
+
+/* style the page header (title and button) */
+.content-header {
+    padding: 10px;
+    padding-left: 15px;
+    margin-left: 0;
+    color: white;
+    background: linear-gradient(180deg, #D32F2F, #FF5733); /* Red Gradient */
+}
+
+.products-header {
+    
+   color: rgb(104, 102, 102);
+    padding-left: 10px;
+    padding-bottom: 20px;
+    margin: 10px;
+  }
+  
+  .add-product-btn {
+    background: linear-gradient(180deg, #D32F2F, #FF5733); /* Red Gradient */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .add-product-btn:hover {
+    background: #b71c1c;
+  }
+
+  /* style the search and filter section */
+
+  .products-filters {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    margin: 20px;
+  }
+  
+  .search-box, .category-filter {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  /* style the products table */
+
+  .products-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .products-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .products-table th, .products-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .products-table th {
+    background: #f4f4f4;
+  }
+  
+  .products-table img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  /* style the action buttons */
+
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .edit-btn, .delete-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .edit-btn {
+    background: #FFA500; /* Orange */
+    color: white;
+  }
+  
+  .delete-btn {
+    background: #D32F2F; /* Red */
+    color: white;
+  }
+  
+  .edit-btn:hover {
+    background: #e69500;
+  }
+  
+  .delete-btn:hover {
+    background: #b71c1c;
+  }
+  
+  
