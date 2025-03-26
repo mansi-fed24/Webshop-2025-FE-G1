@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", loadProducts);
 // Function to fetch and render products
 async function loadProducts() {
 	const productsContainer = document.getElementById("products");
-	productsContainer.innerHTML = "<p>Loading products...</p>"; // Temporary message while loading
+	productsContainer.innerHTML = "<p>Loading products..</p>"; // Temporary message while loading
 
 	try {
 		const products = await fetchProducts();
@@ -31,8 +31,10 @@ function createProductCard(product) {
 	element.className = "product-card";
 
 	element.innerHTML = `
+		<img src="https://tinypic.host/images/2025/03/26/placeholder-img-160x160.png">
     <h3>${product.name}</h3>
-    <p>$${product.price.toFixed(2)}</p>
+		<h4><i> ${product.brand}</i>, ${product.amount} ${product.unit}</h4>
+    <p>${product.price.toFixed(2)} kr</p>
     <button class="add-to-cart-btn">Add to Cart</button>
   `;
 
