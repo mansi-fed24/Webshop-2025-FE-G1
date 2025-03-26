@@ -33,7 +33,7 @@ function createProductCard(product) {
 	element.innerHTML = `
 		<img src="https://tinypic.host/images/2025/03/26/placeholder-img-160x160.png">
     <h3>${product.name}</h3>
-    <p>$${product.price.toFixed(2)}</p>
+    <p>${product.price.toFixed(2)} kr</p>
     <button class="add-to-cart-btn">Add to Cart</button>
   `;
 
