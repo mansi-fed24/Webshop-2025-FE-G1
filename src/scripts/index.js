@@ -27,19 +27,25 @@ async function loadProducts() {
 
 // Function to create an individual product card
 function createProductCard(product) {
-  const element = document.createElement("div");
-  element.className = "product-card";
+	const element = document.createElement("div");
+	element.className = "product-card";
 
-  element.innerHTML = `
-  <img src="${product.image}" alt="${product.name}">
+	element.innerHTML = `
     <h3>${product.name}</h3>
     <p>$${product.price.toFixed(2)}</p>
     <button class="add-to-cart-btn">Add to Cart</button>
   `;
 
-  element.querySelector(".add-to-cart-btn").addEventListener("click", () => {
-    alert(`Adding ${product.name} to cart\nFunctionality not implemented yet`);
-  });
+	//   element.innerHTML = `
+	// <img src="${product.image}" alt="${product.name}">
+	//   <h3>${product.name}</h3>
+	//   <p>$${product.price.toFixed(2)}</p>
+	//   <button class="add-to-cart-btn">Add to Cart</button>
+	// `;
 
-  return element;
+	element.querySelector(".add-to-cart-btn").addEventListener("click", () => {
+		alert(`Adding ${product.name} to cart\nFunctionality not implemented yet`);
+	});
+
+	return element;
 }
