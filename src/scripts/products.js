@@ -5,11 +5,18 @@ document.addEventListener("DOMContentLoaded", loadProducts);
 // Function to fetch and render products
 async function loadProducts() {
 	const productsContainer = document.getElementById("products");
+
 	productsContainer.innerHTML = "<p>Loading products..</p>"; // Temporary message while loading
+
+	// Functionality for sorting alphabetically, unfinished (for sprint2): //
+	// let sortBtn = document.getElementById("#sortBtn");
+	// productsContainer.innerHTML = `
+	//   <button class="sortBtn">Sort alphabetically</button>`;
+	// products.sort((a, b) => a.name.localeCompare(b.name));
 
 	try {
 		const products = await fetchProducts();
-		productsContainer.innerHTML = ""; // Clear loading text
+		productsContainer.innerHTML = ""; // Clear loading text;
 
 		if (products.length > 0) {
 			products.forEach((product) => {
@@ -23,6 +30,7 @@ async function loadProducts() {
 		console.error("Error fetching products:", error);
 		productsContainer.innerHTML = "<p>Failed to load products.</p>";
 	}
+
 }
 
 // Function to create an individual product card
