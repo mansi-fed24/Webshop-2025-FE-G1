@@ -31,6 +31,7 @@ function createProductCard(product) {
   element.className = "product-card";
 
   element.innerHTML = `
+  <img src="${product.image}" alt="${product.name}">
     <h3>${product.name}</h3>
     <p>$${product.price.toFixed(2)}</p>
     <button class="add-to-cart-btn">Add to Cart</button>
