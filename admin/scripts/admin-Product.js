@@ -39,4 +39,24 @@ async function loadProductList() {
   
   // Call the function to load the product list when the page is loaded
   window.onload = loadProductList;
+
+
+  // javascript for the add product form 
+  // Get references to elements
+const addProductBtn = document.querySelector(".add-product-btn"); // Add product button
+const productFormContainer = document.getElementById("productFormContainer"); // Form container
+const cancelFormBtns = document.querySelectorAll("#cancelFormBtn, #cancelFormBtnBottom"); // Both cancel buttons
+
+// Show form when "Add Product" is clicked
+addProductBtn.addEventListener("click", function () {
+    productFormContainer.style.display = "block"; // Show form
+});
+
+// Hide form when "Cancel" is clicked
+cancelFormBtns.forEach(button => {
+    button.addEventListener("click", function () {
+        productFormContainer.style.display = "none"; // Hide form
+    });
+});
+
   

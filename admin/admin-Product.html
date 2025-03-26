@@ -40,7 +40,50 @@
                 </select>
                 <input type="text" placeholder="Search products..." class="search-box">
                 
-                <button class="add-product-btn"> + Add New Product</button>
+                <button class="add-product-btn btn btn-primary" id="addProductBtn" class="btn btn-primary"> + Add New Product</button>
+                <div id="productFormContainer">
+                    <div class="product-form">
+                        <div class="form-header">
+                            <h2>Add Product</h2>
+                            <button id="cancelFormBtn">X</button>
+                        </div>
+                
+                        <form id="productForm">
+                            <label>Image URL</label>
+                            <input type="text" id="productImage" placeholder="Enter Image URL">
+                
+                            <label>Product Name</label>
+                            <input type="text" id="productName" placeholder="Enter Product Name">
+                
+                            <label>Price (kr)</label>
+                            <input type="number" id="productPrice" placeholder="Enter Price">
+                
+                            <label>Unit</label>
+                            <input type="text" id="productUnit" placeholder="Enter Unit (e.g., kg, pcs)">
+                                       
+                
+                            <label>Brand</label>
+                            <input type="text" id="productBrand" placeholder="Enter Brand Name">
+                
+                            <label>Discount (%)</label>
+                            <input type="number" id="productDiscount" placeholder="Enter Discount %">
+                
+                            <label>Description</label>
+                            <textarea id="productDescription" placeholder="Enter Product Description"></textarea>
+                
+                            <label>Category</label>
+                            <input type="text" id="productCategory" placeholder="Enter Category">
+                
+                            <label>Stock</label>
+                            <input type="number" id="productStock" placeholder="Enter Stock Quantity">
+                            <div class="buttons-container">
+                            <!-- Submit & Cancel Buttons -->
+                                <button type="submit" class="save-btn">Save Product</button>
+                                <button type="button" id="cancelFormBtnBottom" class="cancel-btn">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <div class="products-box">
