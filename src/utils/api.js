@@ -14,10 +14,10 @@
 // }
 
 export function getBaseUrl() {
-  if (!window.location.href.includes('localhost')) {
+  // if (!window.location.href.includes('localhost')) {
     return "https://webshop-2025-be-g1-blush.vercel.app/";
-  }
-  return "http://localhost:3000/";
+  // }
+  // return "http://localhost:3000/";
 }
 
 export async function fetchProducts(endpoint = "api/products") {
