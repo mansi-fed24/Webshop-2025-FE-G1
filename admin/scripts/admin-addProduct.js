@@ -21,44 +21,64 @@
 
 //javascript for save product form to database
 
-// Get references to the form and its inputs
-const productForm = document.getElementById('productForm');
-
-// Add event listener to the form submission
-productForm.addEventListener('submit', async function (event) {
-    event.preventDefault(); // Prevent default form submission behavior
-
-    // Get the form data
-    const productData = {
-        image: document.getElementById('productImage').value,
-        name: document.getElementById('productName').value,
-        price: parseFloat(document.getElementById('productPrice').value),
-        unit: document.getElementById('productUnit').value,
-        brand: document.getElementById('productBrand').value,
-        discount: parseFloat(document.getElementById('productDiscount').value),
-        description: document.getElementById('productDescription').value,
-        category: document.getElementById('productCategory').value,
-        stock: parseInt(document.getElementById('productStock').value),
-    };
-    console.log('Product Data:', productData);
-
-
+// Fetch categories from backend and populate the dropdown
+async function loadCategories() {
     try {
-        // Make a POST request to the backend to add the new product
-        const response = await axios.post('https://webshop-2025-be-g1-blush.vercel.app/api/products', productData);
+        const response = await axios.get("https://webshop-2025-be-g1-blush.vercel.app/api/categories");
+        const categories = response.data;
 
-        // Check if the product was successfully added
+        const categorySelect = document.getElementById("productCategory");
+        categorySelect.innerHTML = ""; // Clear existing options
+
+        categories.forEach(category => {
+            let option = document.createElement("option");
+            option.value = category._id; // Save ID for backend
+            option.textContent = category.name; // Show name in dropdown
+            categorySelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error fetching categories:", error);
+    }
+}
+
+// Call function when page loads
+document.addEventListener("DOMContentLoaded", () => {
+    loadCategories(); // Load categories on page load
+
+    //  Handle product form submission and send data to backend
+document.getElementById("productForm").addEventListener("submit", async function (event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Collect form data
+    const productData = {
+        image: document.getElementById("productImage").value,
+        name: document.getElementById("productName").value,
+        price: parseFloat(document.getElementById("productPrice").value),
+        unit: document.getElementById("productUnit").value,
+        brand: document.getElementById("productBrand").value,
+        discount: parseFloat(document.getElementById("productDiscount").value),
+        description: document.getElementById("productDescription").value,
+        category: document.getElementById("productCategory").value, // Use category ID
+        stock: parseInt(document.getElementById("productStock").value, 10),
+        amount: 1 // Default amount (can be changed later)
+    };
+    console.log("Product Data:", productData);
+    
+    try {
+        const response = await axios.post("https://webshop-2025-be-g1-blush.vercel.app/api/products", productData);
+
+        console.log("Response:", response); // Log API response
         if (response.status === 201) {
-            alert('Product added successfully!');
-            loadProductList(); // Reload the product list to display the new product
-            productForm.reset(); // Reset the form fields
-            productFormContainer.style.display = "none"; // Hide the form after submission
+            alert("Product added successfully!");
+            document.getElementById("productForm").reset(); // Clear form
+            loadProductList(); // Refresh product list
         } else {
-            alert('Failed to add product. Please try again.');
+            alert("Failed to add product.");
         }
     } catch (error) {
-        // Handle any errors that occurred during the API request
-        console.error('Error adding product:', error);
-        alert('Error adding product. Please try again later.');
+        console.error("Error adding product:", error);
+        alert("Error adding product. Please try again.");
     }
 });
+});
+

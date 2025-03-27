@@ -26,10 +26,17 @@ async function loadProductList() {
           <td>${product.category.name}</td>
           <td>${product.stock}</td>
           <td>
-            <button class="delete-btn" data-id="${product._id}">🗑 Delete</button>
-            <button class="update-btn" data-id="${product._id}">✏️ Edit</button>
+            <div class="button-group">
+              <button class="update-btn" data-id="${product._id}">
+                <i class="fas fa-edit"></i>
+                Edit
+              </button>
+              <button class="delete-btn" data-id="${product._id}">
+                <i class="fas fa-trash-alt"></i>
+                Delete
+              </button>
+            </div>
           </td>
-        
         `;
   
         // Append the row to the table body

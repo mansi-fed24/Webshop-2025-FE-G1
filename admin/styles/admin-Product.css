@@ -262,3 +262,54 @@ textarea {
     cursor: pointer;
     width: 20vw;
 }
+
+/* styling the edit and delete buttons */
+
+/* Container to hold the buttons stacked */
+.button-group {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  gap: 10px; 
+}
+
+/* General button styling */
+.update-btn,
+.delete-btn {
+  width: 75px; /* Same width for both buttons */
+  height: 30px; /* Same height for both buttons */
+ 
+  gap: 4px; /* Space between icon and text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  
+  transition: background 0.3s ease;
+}
+
+/* Edit button */
+.update-btn {
+  background-color: #64afec; 
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #388e3c; 
+}
+
+/* Delete button */
+.delete-btn {
+  background-color: #f44336; 
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f; 
+}
+
+/* Icon styling */
+.update-btn i,
+.delete-btn i {
+  font-size: 12px; 
+}
