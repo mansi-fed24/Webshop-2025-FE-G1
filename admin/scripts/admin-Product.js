@@ -25,6 +25,11 @@ async function loadProductList() {
           <td>${product.description}</td>
           <td>${product.category.name}</td>
           <td>${product.stock}</td>
+          <td>
+            <button class="delete-btn" data-id="${product._id}">🗑 Delete</button>
+            <button class="update-btn" data-id="${product._id}">✏️ Edit</button>
+          </td>
+        
         `;
   
         // Append the row to the table body
@@ -41,22 +46,5 @@ async function loadProductList() {
   window.onload = loadProductList;
 
 
-  // javascript for the add product form 
-  // Get references to elements
-const addProductBtn = document.querySelector(".add-product-btn"); // Add product button
-const productFormContainer = document.getElementById("productFormContainer"); // Form container
-const cancelFormBtns = document.querySelectorAll("#cancelFormBtn, #cancelFormBtnBottom"); // Both cancel buttons
-
-// Show form when "Add Product" is clicked
-addProductBtn.addEventListener("click", function () {
-    productFormContainer.style.display = "block"; // Show form
-});
-
-// Hide form when "Cancel" is clicked
-cancelFormBtns.forEach(button => {
-    button.addEventListener("click", function () {
-        productFormContainer.style.display = "none"; // Hide form
-    });
-});
-
+  
   
