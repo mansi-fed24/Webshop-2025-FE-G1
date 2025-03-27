@@ -40,6 +40,8 @@ productForm.addEventListener('submit', async function (event) {
         category: document.getElementById('productCategory').value,
         stock: parseInt(document.getElementById('productStock').value),
     };
+    console.log('Product Data:', productData);
+
 
     try {
         // Make a POST request to the backend to add the new product
