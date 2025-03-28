@@ -30,7 +30,6 @@ async function loadProducts() {
 		console.error("Error fetching products:", error);
 		productsContainer.innerHTML = "<p>Failed to load products.</p>";
 	}
-
 }
 
 // Function to create an individual product card
@@ -39,6 +38,8 @@ function createProductCard(product) {
 	element.className = "product-card";
 
 	element.innerHTML = `
+		<p>(${product.category.name})</p>
+		
 		<img src="${product.image}" alt="${product.name}">
     <h3>${product.name}</h3>
 		<h4><i> ${product.brand}</i>, ${product.amount} ${product.unit}</h4>
@@ -52,3 +53,19 @@ function createProductCard(product) {
 
 	return element;
 }
+
+
+// async function loadCategories(product) {
+// 	const categoryButtons = document.getElementById("category-buttons");
+
+// 	categoryButtons = await fetchProducts();
+// 	const element = document.createElement("div");
+// 	element.className = "category";
+
+// 	categories.innerHTML = `
+//     <p>${product.category}</p>
+//   `;
+// 	return categories;
+// }
+
+// function createCategory() {}
