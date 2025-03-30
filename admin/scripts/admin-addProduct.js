@@ -82,3 +82,79 @@ document.getElementById("productForm").addEventListener("submit", async function
 });
 });
 
+// Function to delete a product
+
+const deleteProduct = async (productId) => {
+    try {
+        const response = await axios.delete(`https://webshop-2025-g1-be.vercel.app/api/products/${productId}`);
+        console.log("Product deleted:", response.data);
+        alert("Product deleted successfully!");
+        // Optionally refresh the product list
+        loadProductList(); 
+    } catch (error) {
+        console.error("Error deleting product:", error);
+        alert("Failed to delete product. Please try again.");
+    }
+};
+
+/* Function to delete a product
+async function deleteProduct(productId, productName) {
+    const confirmDelete = confirm(`Are you sure you want to delete "${productName}"?`);
+    
+    if (!confirmDelete) {
+        return; // Stop if user cancels
+    }
+
+    try {
+        const response = await axios.delete("https://webshop-2025-be-g1-blush.vercel.app/api/products", {
+            data: { id: productId } // Send product ID in the request body
+        });
+
+        if (response.status === 200) {
+            alert(`"${productName}" has been deleted successfully!`);
+            loadProductList(); // Refresh the product list after deletion
+        } else {
+            alert("Failed to delete product. Please try again.");
+        }
+    } catch (error) {
+        console.error("Error deleting product:", error);
+        alert("Error deleting product. Please try again.");
+    }
+}
+
+// Function to attach delete event listeners to buttons
+function attachDeleteListeners() {
+    const deleteButtons = document.querySelectorAll(".delete-btn"); // Select all delete buttons
+
+    deleteButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const productId = this.getAttribute("data-id"); // Get product ID
+            const productName = this.getAttribute("data-name");
+            
+            deleteProduct(productId, productName);
+            
+        });
+    });
+}*/
+
+// Function to attach delete event listeners to buttons
+function attachDeleteListeners() {
+    const deleteButtons = document.querySelectorAll(".delete-btn"); // Select all delete buttons
+
+deleteButtons.forEach(button => {
+    button.addEventListener("click", function () {
+        const productId = this.getAttribute("data-id"); // Get product ID from button
+
+        // Show confirmation popup before deleting
+        const confirmDelete = confirm(`Are you sure you want to delete this product?`);
+        if (confirmDelete) {
+            deleteProduct(productId); // Call the delete function
+        }
+    });
+});
+}
+// Attach event listeners for delete buttons when the page loads
+window.onload = function() {
+    loadProductList(); // Load product list
+    attachDeleteListeners(); // Attach event listeners to delete buttons
+};

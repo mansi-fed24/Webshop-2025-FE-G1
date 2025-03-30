@@ -42,6 +42,8 @@ async function loadProductList() {
         // Append the row to the table body
         tableBody.appendChild(row);
       });
+    // Add event listeners for delete buttons
+    attachDeleteListeners(); // Attach event listeners to new delete buttons
     } catch (error) {
       // Handle error in case of failure
       console.error('Error loading product data:', error);
