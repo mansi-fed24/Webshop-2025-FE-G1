@@ -84,7 +84,7 @@ document.getElementById("productForm").addEventListener("submit", async function
 
 // Function to delete a product
 
-const deleteProduct = async (productId) => {
+/*const deleteProduct = async (productId) => {
     try {
         const response = await axios.delete(`https://webshop-2025-g1-be.vercel.app/api/products/${productId}`);
         console.log("Product deleted:", response.data);
@@ -95,9 +95,9 @@ const deleteProduct = async (productId) => {
         console.error("Error deleting product:", error);
         alert("Failed to delete product. Please try again.");
     }
-};
+};*/
 
-/* Function to delete a product
+ //Function to delete a product
 async function deleteProduct(productId, productName) {
     const confirmDelete = confirm(`Are you sure you want to delete "${productName}"?`);
     
@@ -135,9 +135,9 @@ function attachDeleteListeners() {
             
         });
     });
-}*/
+}
 
-// Function to attach delete event listeners to buttons
+/*// Function to attach delete event listeners to buttons
 function attachDeleteListeners() {
     const deleteButtons = document.querySelectorAll(".delete-btn"); // Select all delete buttons
 
@@ -153,8 +153,4 @@ deleteButtons.forEach(button => {
     });
 });
 }
-// Attach event listeners for delete buttons when the page loads
-window.onload = function() {
-    loadProductList(); // Load product list
-    attachDeleteListeners(); // Attach event listeners to delete buttons
-};
+*/
