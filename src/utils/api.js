@@ -30,3 +30,11 @@ export async function fetchProducts(endpoint = "api/products") {
   }
   return [];    
 }
+
+// Added function for fetching pre-existing categories from the database to use for functions in page-specific javascript-files
+export async function fetchCategories(endpoint = "api/categories") {
+	  const url = `${getBaseUrl()}${endpoint}`;
+    const response = await fetch(url)
+    const categories = await response.json();
+  return categories;
+ }
