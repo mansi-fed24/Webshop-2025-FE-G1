@@ -33,16 +33,13 @@ document.addEventListener("DOMContentLoaded", loadProducts);
 // Function to fetch and render products
 async function loadProducts() {
 	const productsContainer = document.getElementById("products");
+	productsContainer.innerHTML = "<p>Loading products..</p>";
 
-	productsContainer.innerHTML = "<p>Loading products..</p>"; // Temporary message while loading
-
-	//#region
-	//  Functionality for sorting alphabetically, unfinished (for sprint2): //
+	// //  Functionality for sorting alphabetically, unfinished (for sprint2): //
 	// let sortBtn = document.getElementById("#sortBtn");
 	// productsContainer.innerHTML = `
-	//   <button class="sortBtn">Sort alphabetically</button>`;
+	//   <button id="sortBtn">Sort alphabetically</button>`;
 	// products.sort((a, b) => a.name.localeCompare(b.name));
-	//#endregion
 
 	try {
 		const products = await fetchProducts();
