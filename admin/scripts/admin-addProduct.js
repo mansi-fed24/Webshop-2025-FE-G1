@@ -64,14 +64,15 @@ document.getElementById("productForm").addEventListener("submit", async function
     const productData = {
         image: document.getElementById("productImage").value,
         name: document.getElementById("productName").value,
-        price: parseFloat(document.getElementById("productPrice").value),
+        price: parseFloat(document.getElementById("productPrice").value, 10),
         unit: document.getElementById("productUnit").value,
+        amount: parseInt(document.getElementById("productQuantity").value, 10),
         brand: document.getElementById("productBrand").value,
         discount: parseFloat(document.getElementById("productDiscount").value),
         description: document.getElementById("productDescription").value,
         category: document.getElementById("productCategory").value, // Use category ID
         stock: parseInt(document.getElementById("productStock").value, 10),
-        amount: 1 // Default amount (can be changed later)
+        
     };
     console.log("Product Data:", productData);
     
@@ -170,12 +171,19 @@ function attachEditListeners() {
 
                 // show product form
                 productFormContainer.style.display = "block";  
+                // Scroll to the top smoothly
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
                 
                 // Fill in the form with product data
                 document.getElementById("productImage").value = product.image;
                 document.getElementById("productName").value = product.name;
                 document.getElementById("productPrice").value = product.price;
                 document.getElementById("productUnit").value = product.unit;
+                document.getElementById("productQuantity").value = product.amount;
                 document.getElementById("productBrand").value = product.brand;
                 document.getElementById("productDiscount").value = product.discount;
                 document.getElementById("productDescription").value = product.description;

@@ -21,8 +21,7 @@ async function loadProductList(updatedProductId = null) {
           <td><img src="${product.image}" alt="${product.name}" width="50" height="50"></td>
           <td>${product.name}</td>
           <td>${product.price}</td>
-          <td>${product.unit}</td>
-          <td>${product.amount}</td>
+          <td>${product.amount} ${product.unit}</td> 
           <td>${product.brand}</td>
           <td>${product.discount}</td>
           <td>${product.description}</td>

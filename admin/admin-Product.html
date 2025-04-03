@@ -59,10 +59,23 @@
                             <label>Price (kr)</label>
                             <input type="number" id="productPrice" placeholder="Enter Price">
                 
-                            <label>Unit</label>
-                            <input type="text" id="productUnit" placeholder="Enter Unit (e.g., kg, pcs)">
-                                       
-                
+                            <label for="productUnit">Unit of Measurement:</label>
+                            <select id="productUnit" name="productUnit" required>
+                                <option value="kg">kg</option>
+                                <option value="mg">mg</option>
+                                <option value="g">g</option>
+                                <option value="ml">ml</option>
+                                <option value="cl">cl</option>
+                                <option value="l">l</option>
+                                <option value="pcs">pcs</option>
+                                <option value="st">st</option>
+                                <option value="oz">oz</option>
+                                <option value="lb">lb</option>
+                            </select>
+
+                            <label for="productQuantity">Quantity/Unit:</label>
+                            <input type="number" id="productQuantity" name="productQuantity" min="1" required>
+
                             <label>Brand</label>
                             <input type="text" id="productBrand" placeholder="Enter Brand Name">
                 
@@ -97,8 +110,7 @@
                         <th>Image</th>
                         <th>Name</th>
                         <th>Price</th>
-                        <th>Unit</th>
-                        <th>Amount</th>
+                        <th>Pack Size</th>
                         <th>Brand</th>
                         <th>Discount</th>
                         <th>Description</th>
