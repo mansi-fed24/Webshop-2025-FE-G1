@@ -181,7 +181,9 @@ function attachEditListeners() {
                 // Fill in the form with product data
                 document.getElementById("productImage").value = product.image;
                 document.getElementById("productName").value = product.name;
-                document.getElementById("productPrice").value = product.price;
+                
+                //document.getElementById("productPrice").value = product.price;
+                document.getElementById("productPrice").value = product.price.toFixed(2); // Format price to 2 decimal places
                 document.getElementById("productUnit").value = product.unit;
                 document.getElementById("productQuantity").value = product.amount;
                 document.getElementById("productBrand").value = product.brand;

@@ -1,0 +1,125 @@
+/* Centered Login Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal Content */
+.modal-content {
+    background: white;
+    padding: 60px;
+    border-radius: 10px;
+    width: 600px;
+    
+    position: relative;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+h2 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #0c137c;
+}
+p {
+    text-align: center;
+    font-size: 16px;
+    
+    margin-bottom: 20px;
+    color: #3a3737;
+}
+
+
+
+/* Input Fields */
+input {
+    width: 100% -25px; /* Adjusted for padding and border */
+    font-size: 16px;
+    padding: 15px;
+    margin: 5px 0px ;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Password Field with Eye Icon */
+.password-container {
+    
+    display: flex;
+    
+    align-items: center;
+}
+
+.password-container input {
+    flex: 1;
+   
+}
+
+
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+}
+
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background 0.3s, color 0.3s;
+    font-weight: bold;
+}
+
+#loginBtn {
+    background: blue;
+    color: white;
+}
+
+#createAccountBtn {
+    background: lightgray;
+    color: black;
+}
+
+/* Forgot Password Link */
+p a {
+    text-align: left;
+    color: blue;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+/* Light Grey Line Separator */
+.separator {
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+
+

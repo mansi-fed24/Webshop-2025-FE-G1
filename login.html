@@ -4,27 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Hakim Livs</title>
-    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script> 
+    <link rel="stylesheet" href="login.css" />
   </head>
   <body>
+      <!-- Login Button -->
+    <button id="openLoginBtn">Logga in</button>
 
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
-      <h1>Login</h1>
-      <div id="login-container">
-        <form id="loginForm" class="login-form">
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" required />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" required />
-          </div>
-          <button type="submit">Login</button>
-        </form>
-      </div>
-    </main>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>VÄLKOMMEN!</h2>
+            <p>Logga in för att få ut mer av din shopping!</p>
+            <!-- Login Form -->
+            <form id="loginForm">
+            <!-- Email Field -->
+                <div class="input-container">
+                  <input type="email" id="username" placeholder="E-postadress">
+                </div>
+                <!-- Password Field -->
+                
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="Lösenord">
+                  
+                </div>
+                                
+                <!-- Login Button -->
+                <button type="submit" id="loginBtn">Logga in</button>
+            </form>
+
+            <!-- Forgot Password -->
+            <p><a href="#">Glömt lösenord?</a></p>
+            
+            <!-- Light Grey Separator Line -->
+            <div class="separator"></div>
+
+            <!-- Create Account Button -->
+             <div>Ny hos Hakim Livs?</div>
+            <button id="createAccountBtn">Skapa konto</button>
+        </div>
+    </div>
 
     <!-- PAGE-SPECIFIC JAVASCRIPT -->
     <script type="module" src="./src/scripts/login.js"></script>
