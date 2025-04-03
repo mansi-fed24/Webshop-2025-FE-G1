@@ -1,5 +1,33 @@
-import { fetchProducts } from "../utils/api.js";
+import { fetchProducts, fetchCategories } from "../utils/api.js";
 
+function createCategoryButton(category) {
+	const btn = document.createElement("button");
+	btn.classList.add(`category-button`);
+	btn.innerText = category.name;
+
+	btn.addEventListener("click", function () {
+		// define a function which is called when the button is clicked (see below)
+		handleCategoryButtonClick(category); // placeholder temp  ?
+	});
+	return btn;
+}
+
+async function renderCategoryButtons() {
+	const categories = await fetchCategories();
+
+	categories.forEach(function (category) {
+		const btn = createCategoryButton(category);
+		document.querySelector("#category-buttons").appendChild(btn);
+	});
+}
+
+async function handleCategoryButtonClick(category) {
+	// fetch to the backend to get all the products of the given category
+	// consider adding a function to api.js for this
+}
+
+// additional eventListener line for loading in the categoryButtons also
+document.addEventListener("DOMContentLoaded", renderCategoryButtons);
 document.addEventListener("DOMContentLoaded", loadProducts);
 
 // Function to fetch and render products
@@ -8,11 +36,13 @@ async function loadProducts() {
 
 	productsContainer.innerHTML = "<p>Loading products..</p>"; // Temporary message while loading
 
-	// Functionality for sorting alphabetically, unfinished (for sprint2): //
+	//#region
+	//  Functionality for sorting alphabetically, unfinished (for sprint2): //
 	// let sortBtn = document.getElementById("#sortBtn");
 	// productsContainer.innerHTML = `
 	//   <button class="sortBtn">Sort alphabetically</button>`;
 	// products.sort((a, b) => a.name.localeCompare(b.name));
+	//#endregion
 
 	try {
 		const products = await fetchProducts();
@@ -53,7 +83,6 @@ function createProductCard(product) {
 
 	return element;
 }
-
 
 // async function loadCategories(product) {
 // 	const categoryButtons = document.getElementById("category-buttons");
