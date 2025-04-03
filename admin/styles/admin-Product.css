@@ -181,6 +181,7 @@
     z-index: 10;
 }
 
+
 /* Form box */
 .product-form {
     background: white;
@@ -312,4 +313,8 @@ textarea {
 .update-btn i,
 .delete-btn i {
   font-size: 12px; 
+}
+.highlight {
+  background-color: #fffa9d;
+  transition: background-color 2s ease-in-out;
 }

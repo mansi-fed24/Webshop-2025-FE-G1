@@ -1,6 +1,7 @@
 // Function to fetch product data and fill in the table using axios
-async function loadProductList() {
+async function loadProductList(updatedProductId = null) {
     try {
+      console.log("Loading product list...");
       // Make an axios GET request to fetch product data from the backend
       const response = await axios.get('https://webshop-2025-be-g1-blush.vercel.app/api/products');  
       
@@ -9,10 +10,12 @@ async function loadProductList() {
   
       // Get the tbody element where rows will be inserted
       const tableBody = document.getElementById('productBody');
+      tableBody.innerHTML = ""; // Clear old product list
   
       // Loop through the products and add each one as a row in the table
       products.forEach(product => {
         const row = document.createElement('tr');
+        row.setAttribute("data-id", product._id); //Add a data attribute
   
         row.innerHTML = `
           <td><img src="${product.image}" alt="${product.name}" width="50" height="50"></td>
@@ -41,9 +44,16 @@ async function loadProductList() {
   
         // Append the row to the table body
         tableBody.appendChild(row);
+
+        // Highlight the updated product
+        if (updatedProductId && product._id === updatedProductId) {
+          row.classList.add("highlight");
+          setTimeout(() => row.classList.remove("highlight"), 2000); // Remove effect after 2 sec
+      }
       });
-    // Add event listeners for delete buttons
+    
     attachDeleteListeners(); // Attach event listeners to new delete buttons
+    attachEditListeners(); // Attach event listeners to edit buttons
     } catch (error) {
       // Handle error in case of failure
       console.error('Error loading product data:', error);
