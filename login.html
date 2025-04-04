@@ -4,47 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Hakim Livs</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script> 
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="login.css" >
   </head>
   <body>
-      <!-- Login Button -->
-    <button id="openLoginBtn">Logga in</button>
+    
+     <!-- Login Popup Form -->
+     <div id="loginPopup" class="login-popup">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>VÄLKOMMEN!</h2>
+        <p>Logga in för att få ut mer av din shopping!</p>
+        <form id="loginForm">
+          <div class="input-container">
+            <input type="email" id="username" placeholder="E-postadress" required />
+          </div>
+          <div class="password-container">
+            <input type="password" id="password" placeholder="Password" required />
+            <i class="fas fa-eye" id="togglePassword"></i>
+          </div>
+          <button type="submit" id="loginBtn">Logga in</button>
+        </form>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>VÄLKOMMEN!</h2>
-            <p>Logga in för att få ut mer av din shopping!</p>
-            <!-- Login Form -->
-            <form id="loginForm">
-            <!-- Email Field -->
-                <div class="input-container">
-                  <input type="email" id="username" placeholder="E-postadress">
-                </div>
-                <!-- Password Field -->
-                
-                <div class="password-container">
-                    <input type="password" id="password" placeholder="Lösenord">
-                  
-                </div>
-                                
-                <!-- Login Button -->
-                <button type="submit" id="loginBtn">Logga in</button>
-            </form>
+        <p><a href="#">Glömt lösenord?</a></p>
 
-            <!-- Forgot Password -->
-            <p><a href="#">Glömt lösenord?</a></p>
-            
-            <!-- Light Grey Separator Line -->
-            <div class="separator"></div>
+        <div class="separator"></div>
 
-            <!-- Create Account Button -->
-             <div>Ny hos Hakim Livs?</div>
-            <button id="createAccountBtn">Skapa konto</button>
-        </div>
-    </div>
+        <div>Ny hos Hakim Livs?</div>
+        <button id="createAccountBtn">Skapa konto</button>
+      </div>
+     </div>
 
     <!-- PAGE-SPECIFIC JAVASCRIPT -->
     <script type="module" src="./src/scripts/login.js"></script>
