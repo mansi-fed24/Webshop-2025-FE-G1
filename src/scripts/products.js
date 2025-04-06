@@ -21,10 +21,31 @@ async function renderCategoryButtons() {
 	});
 }
 
-async function handleCategoryButtonClick(category) {
 	// fetch to the backend to get all the products of the given category
 	// consider adding a function to api.js for this
+async function handleCategoryButtonClick(category) {
+	const productsContainer = document.getElementById("products");
+	productsContainer.innerHTML = "<p>Loading products...</p>";
+
+	try {
+		const filteredProducts = await fetchProducts(category.id);
+		productsContainer.innerHTML = ""; // Clear previous products
+
+		if (filteredProducts.length > 0) {
+			filteredProducts.forEach((product) => {
+				const productCard = createProductCard(product);
+				productsContainer.appendChild(productCard);
+			});
+		} else {
+			productsContainer.innerHTML =
+				"<p>No products available in this category.</p>";
+		}
+	} catch (error) {
+		console.error("Error fetching filtered products:", error);
+		productsContainer.innerHTML = "<p>Failed to load filtered products.</p>";
+	}
 }
+// currently the handle-button only refreshes the same page w content again basically
 
 // additional eventListener line for loading in the categoryButtons also
 document.addEventListener("DOMContentLoaded", renderCategoryButtons);
