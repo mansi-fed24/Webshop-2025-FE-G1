@@ -1,4 +1,12 @@
 import { fetchProducts, fetchCategories } from "../utils/api.js";
+import {
+	addProductToCart,
+	updateDOMWithCartData
+} from '../utils/cartFunctions.js'
+
+document.addEventListener('DOMContentLoaded', function() {
+	updateDOMWithCartData()
+})
 
 function createCategoryButton(category) {
 	const btn = document.createElement("button");
@@ -78,7 +86,7 @@ function createProductCard(product) {
   `;
 
 	element.querySelector(".add-to-cart-btn").addEventListener("click", () => {
-		alert(`Adding ${product.name} to cart\nFunctionality not implemented yet`);
+		addProductToCart(product)
 	});
 
 	return element;
