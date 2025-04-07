@@ -1,4 +1,3 @@
-
 // export function getBaseUrl() {
 //   // Get the group number from the hostname to determine the base URL for BE
 //   const regex = /webshop\-2025\-(g[0-9]{1,2})\-fe/g;
@@ -8,29 +7,44 @@
 //   if (match) {
 //     const group = match[1];
 //     return `https://webshop-2025-be-g1-blush.vercel.app/`;
-  
+
 //     }
 //   return "http://localhost:3000/";
 // }
 
 export function getBaseUrl() {
   // if (!window.location.href.includes('localhost')) {
-    return "https://webshop-2025-be-g1-blush.vercel.app/";
+  return "https://webshop-2025-be-g1-blush.vercel.app/";
   // }
   // return "http://localhost:3000/";
 }
 
-export async function fetchProducts(endpoint = "api/products") {
-  //! DONT USE THIS IN PRODUCTION
+// export async function fetchProducts(endpoint = "api/products") {
+// //   //! DONT USE THIS IN PRODUCTION
+//   const url = `${getBaseUrl()}${endpoint}`;
+//   const response = await fetch(url);
+//   if(response.ok){
+//     const data = await response.json();
+//     return data;
+//   }
+//   return [];
+// }
+
+
+export async function fetchProducts(categoryName = null) {
+  let endpoint = "api/products";
+  if (categoryName) {
+    endpoint += `?category=${encodeURIComponent(categoryName)}`;
+  }
+
   const url = `${getBaseUrl()}${endpoint}`;
   const response = await fetch(url);
-  if(response.ok){
-    const data = await response.json();
-    return data;
-  }
-  return [];    
-}
 
+  if (response.ok) {
+    return await response.json();
+  }
+  return [];
+}
 
 // export async function fetchCategories(categoryId = null) {
 // 	let endpoint = "api/products";
@@ -50,12 +64,12 @@ export async function fetchProducts(endpoint = "api/products") {
 
 // Added function for fetching pre-existing categories from the database to use for functions in page-specific javascript-files
 export async function fetchCategories(endpoint = "api/categories") {
-	const url = `${getBaseUrl()}${endpoint}`;
-	const response = await fetch(url);
+  const url = `${getBaseUrl()}${endpoint}`;
+  const response = await fetch(url);
 
-	if (response.ok) {
-		return await response.json();
-	}
+  if (response.ok) {
+    return await response.json();
+  }
 
-	return [];
+  return [ ];
 }
