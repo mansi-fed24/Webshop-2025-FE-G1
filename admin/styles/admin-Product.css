@@ -70,6 +70,7 @@
     padding-left: 10px;
     padding-bottom: 20px;
     margin: 10px;
+    
   }
   
   .add-product-btn {
@@ -105,16 +106,21 @@
   
   /* style the products table */
 
-  .products-box {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+  
+  /* Make the products box scrollable */
+.products-box {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 795px; /* Adjust this height according to your needs */
+  overflow-y: auto; /* Enables vertical scrolling */
+}
   
   .products-table {
     width: 100%;
     border-collapse: collapse;
+   
   }
   
   .products-table th, .products-table td {
@@ -125,7 +131,10 @@
   
   .products-table th {
     background: #f4f4f4;
+    
+  
   }
+  
   
   .products-table img {
     width: 50px;
@@ -180,6 +189,7 @@
     max-width: 600px;
     z-index: 10;
 }
+
 
 /* Form box */
 .product-form {
@@ -262,3 +272,60 @@ textarea {
     cursor: pointer;
     width: 20vw;
 }
+
+/* styling the edit and delete buttons */
+
+/* Container to hold the buttons stacked */
+.button-group {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  gap: 10px; 
+}
+
+/* General button styling */
+.update-btn,
+.delete-btn {
+  width: 75px; /* Same width for both buttons */
+  height: 30px; /* Same height for both buttons */
+ 
+  gap: 4px; /* Space between icon and text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  
+  transition: background 0.3s ease;
+}
+
+/* Edit button */
+.update-btn {
+  background-color: #64afec; 
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #388e3c; 
+}
+
+/* Delete button */
+.delete-btn {
+  background-color: #f44336; 
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f; 
+}
+
+/* Icon styling */
+.update-btn i,
+.delete-btn i {
+  font-size: 12px; 
+}
+.highlight {
+  background-color: #fffa9d;
+  transition: background-color 2s ease-in-out;
+}
+
+

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="styles/admin.css">
     <link rel="stylesheet" href="styles/admin-Product.css">
+    <script src="scripts/admin-addProduct.js" defer></script>
     <script src="scripts/admin-Product.js" defer></script>
 </head>
 <body>
@@ -56,12 +57,25 @@
                             <input type="text" id="productName" placeholder="Enter Product Name">
                 
                             <label>Price (kr)</label>
-                            <input type="number" id="productPrice" placeholder="Enter Price">
+                            <input type="number" id="productPrice" placeholder="Enter Price" step="0.01">
                 
-                            <label>Unit</label>
-                            <input type="text" id="productUnit" placeholder="Enter Unit (e.g., kg, pcs)">
-                                       
-                
+                            <label for="productUnit">Unit of Measurement:</label>
+                            <select id="productUnit" name="productUnit" required>
+                                <option value="kg">kg</option>
+                                <option value="mg">mg</option>
+                                <option value="g">g</option>
+                                <option value="ml">ml</option>
+                                <option value="cl">cl</option>
+                                <option value="l">l</option>
+                                <option value="pcs">pcs</option>
+                                <option value="st">st</option>
+                                <option value="oz">oz</option>
+                                <option value="lb">lb</option>
+                            </select>
+
+                            <label for="productQuantity">Quantity/Unit:</label>
+                            <input type="number" id="productQuantity" name="productQuantity" min="1" required>
+
                             <label>Brand</label>
                             <input type="text" id="productBrand" placeholder="Enter Brand Name">
                 
@@ -72,7 +86,10 @@
                             <textarea id="productDescription" placeholder="Enter Product Description"></textarea>
                 
                             <label>Category</label>
-                            <input type="text" id="productCategory" placeholder="Enter Category">
+                            <select id="productCategory">
+                                <option>Loading categories...</option>
+                            </select>
+
                 
                             <label>Stock</label>
                             <input type="number" id="productStock" placeholder="Enter Stock Quantity">
@@ -93,8 +110,7 @@
                         <th>Image</th>
                         <th>Name</th>
                         <th>Price</th>
-                        <th>Unit</th>
-                        <th>Amount</th>
+                        <th>Pack Size</th>
                         <th>Brand</th>
                         <th>Discount</th>
                         <th>Description</th>

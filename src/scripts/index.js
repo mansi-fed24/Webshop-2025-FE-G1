@@ -1,6 +1,16 @@
 import { fetchProducts } from "../utils/api.js";
+import { 
+	addProductToCart,
+	getCartFromLocalStorage,
+	saveCartToLocalStorage,
+	updateLocalStorageCart,
+	updateDOMWithCartData
+} from "../utils/cartFunctions.js";
 
-document.addEventListener("DOMContentLoaded", loadProducts);
+document.addEventListener("DOMContentLoaded", function() {
+	loadProducts()
+	updateDOMWithCartData()
+});
 
 // Function to fetch and render products
 async function loadProducts() {
@@ -37,8 +47,10 @@ function createProductCard(product) {
   `;
 
 	element.querySelector(".add-to-cart-btn").addEventListener("click", () => {
-		alert(`Adding ${product.name} to cart\nFunctionality not implemented yet`);
+		addProductToCart(product)
 	});
 
 	return element;
 }
+
+

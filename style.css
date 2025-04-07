@@ -4,11 +4,21 @@
   background-color: #fff;
 }
 
+
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+
+  /* So the footer is always at the bottom */
+  display: flex;
+  flex-direction: column;
+  & > main {
+    width: 100%;
+    flex-grow: 1;
+  }
 }
+
 
 /* Header */
 .site-header {
@@ -32,11 +42,35 @@ body {
   gap: 1rem;
   list-style: none;
   padding: 0;
+  align-items: center;
 }
 
 .nav-links a {
   text-decoration: none;
   color: black;
+  display: flex;
+  align-items: center;
+}
+
+.cart-link {
+  position: relative;
+}
+
+.cart-link span {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+
+  display: inline-block;
+  background-color: orangered;
+  color: white;
+  width: 18px;
+  height: 18px;
+  font-size: .7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
 }
 
 /* Main Content */
@@ -64,6 +98,14 @@ body {
   border: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
+
+  &:hover {
+    background: #b1b1b1;
+  }
+
+  &:active {
+    background: #8b8b8b;
+  }
 }
 
 /* Login */
