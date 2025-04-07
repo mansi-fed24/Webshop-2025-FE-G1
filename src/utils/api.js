@@ -20,17 +20,33 @@ export function getBaseUrl() {
   // return "http://localhost:3000/";
 }
 
-export async function fetchProducts(endpoint = "api/products") {
-  //! DONT USE THIS IN PRODUCTION
+// export async function fetchProducts(endpoint = "api/products") {
+// //   //! DONT USE THIS IN PRODUCTION
+//   const url = `${getBaseUrl()}${endpoint}`;
+//   const response = await fetch(url);
+//   if(response.ok){
+//     const data = await response.json();
+//     return data;
+//   }
+//   return [];    
+// }
+
+// ✅ This now accepts an optional category name
+export async function fetchProducts(categoryName = null) {
+  let endpoint = "api/products";
+  if (categoryName) {
+    endpoint += `?category=${encodeURIComponent(categoryName)}`;
+  }
+
   const url = `${getBaseUrl()}${endpoint}`;
   const response = await fetch(url);
-  if(response.ok){
-    const data = await response.json();
-    return data;
-  }
-  return [];    
-}
 
+  if (response.ok) {
+    return await response.json();
+  }
+
+  return [];
+}
 
 // export async function fetchCategories(categoryId = null) {
 // 	let endpoint = "api/products";

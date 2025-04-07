@@ -30,12 +30,12 @@ async function renderCategoryButtons() {
 
 // fetch to the backend to get all the products of the given category
 // consider adding a function to api.js for this
-async function handleCategoryButtonClick(category) {
+async function handleCategoryButtonClick(categoryName) {
 	const productsContainer = document.getElementById("products");
 	productsContainer.innerHTML = "<p>Loading products...</p>";
 
 	try {
-		const filteredProducts = await fetchProducts(category.name);
+		const filteredProducts = await fetchProducts(categoryName);
 		productsContainer.innerHTML = ""; // Clear previous products
 
 		if (filteredProducts.length > 0) {
