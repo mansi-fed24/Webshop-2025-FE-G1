@@ -1,5 +1,11 @@
 import { fetchProducts, fetchCategories } from "../utils/api.js";
 
+// additional eventListener line for loading in the categoryButtons also
+document.addEventListener("DOMContentLoaded", () => {
+	renderCategoryButtons();
+	loadProducts(); 
+});
+
 function createCategoryButton(category) {
 	const btn = document.createElement("button");
 	btn.classList.add(`category-button`);
@@ -7,40 +13,57 @@ function createCategoryButton(category) {
 
 	btn.addEventListener("click", function () {
 		// define a function which is called when the button is clicked (see below)
-		handleCategoryButtonClick(category); // placeholder temp  ?
+		handleCategoryButtonClick(category.name); // placeholder temp  ?
 	});
 	return btn;
 }
 
 async function renderCategoryButtons() {
 	const categories = await fetchCategories();
+	const container = document.querySelector("#category-buttons");
 
-	categories.forEach(function (category) {
+	categories.forEach((category) => {
 		const btn = createCategoryButton(category);
-		document.querySelector("#category-buttons").appendChild(btn);
+		container.appendChild(btn);
 	});
 }
 
+// fetch to the backend to get all the products of the given category
+// consider adding a function to api.js for this
 async function handleCategoryButtonClick(category) {
-	// fetch to the backend to get all the products of the given category
-	// consider adding a function to api.js for this
-}
+	const productsContainer = document.getElementById("products");
+	productsContainer.innerHTML = "<p>Loading products...</p>";
 
-// additional eventListener line for loading in the categoryButtons also
-document.addEventListener("DOMContentLoaded", renderCategoryButtons);
-document.addEventListener("DOMContentLoaded", loadProducts);
+	try {
+		const filteredProducts = await fetchProducts(category.name);
+		productsContainer.innerHTML = ""; // Clear previous products
+
+		if (filteredProducts.length > 0) {
+			filteredProducts.forEach((product) => {
+				const productCard = createProductCard(product);
+				productsContainer.appendChild(productCard);
+			});
+		} else {
+			productsContainer.innerHTML =
+				"<p>No products available in this category.</p>";
+		}
+	} catch (error) {
+		console.error("Error fetching filtered products:", error);
+		productsContainer.innerHTML = "<p>Failed to load filtered products.</p>";
+	}
+}
+// currently the handle-button only refreshes the same page w content again basically
 
 // Function to fetch and render products
 async function loadProducts() {
 	const productsContainer = document.getElementById("products");
+	productsContainer.innerHTML = "<p>Loading products..</p>";
 
-	productsContainer.innerHTML = "<p>Loading products..</p>"; // Temporary message while loading
-
-	//#region
-	//  Functionality for sorting alphabetically, unfinished (for sprint2): //
+	//#region Sort-btn code draft
+	// //  Functionality for sorting alphabetically, unfinished (for sprint2): //
 	// let sortBtn = document.getElementById("#sortBtn");
 	// productsContainer.innerHTML = `
-	//   <button class="sortBtn">Sort alphabetically</button>`;
+	//   <button id="sortBtn">Sort alphabetically</button>`;
 	// products.sort((a, b) => a.name.localeCompare(b.name));
 	//#endregion
 
