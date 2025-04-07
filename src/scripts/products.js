@@ -37,7 +37,7 @@ async function renderCategoryButtons() {
 // consider adding a function to api.js for this
 async function handleCategoryButtonClick(categoryName) {
   const productsContainer = document.getElementById("products");
-  productsContainer.innerHTML = "<p>Loading products...</p>";
+  productsContainer.innerHTML = "<p>Laddar produkter...</p>";
 
   try {
     const allProducts = await fetchProducts(); // Get all
@@ -89,7 +89,7 @@ async function loadProducts() {
     }
   } catch (error) {
     console.error("Error fetching products:", error);
-    productsContainer.innerHTML = "<p>Failed to load products.</p>";
+    productsContainer.innerHTML = "<p>Något gick fel vid inladdning av produkterna.</p>";
   }
 }
 
