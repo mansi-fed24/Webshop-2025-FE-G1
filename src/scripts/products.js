@@ -1,5 +1,11 @@
 import { fetchProducts, fetchCategories } from "../utils/api.js";
 
+// additional eventListener line for loading in the categoryButtons also
+document.addEventListener("DOMContentLoaded", () => {
+	renderCategoryButtons();
+	loadProducts(); 
+});
+
 function createCategoryButton(category) {
 	const btn = document.createElement("button");
 	btn.classList.add(`category-button`);
@@ -7,28 +13,29 @@ function createCategoryButton(category) {
 
 	btn.addEventListener("click", function () {
 		// define a function which is called when the button is clicked (see below)
-		handleCategoryButtonClick(category); // placeholder temp  ?
+		handleCategoryButtonClick(category.name); // placeholder temp  ?
 	});
 	return btn;
 }
 
 async function renderCategoryButtons() {
 	const categories = await fetchCategories();
+	const container = document.querySelector("#category-buttons");
 
-	categories.forEach(function (category) {
+	categories.forEach((category) => {
 		const btn = createCategoryButton(category);
-		document.querySelector("#category-buttons").appendChild(btn);
+		container.appendChild(btn);
 	});
 }
 
-	// fetch to the backend to get all the products of the given category
-	// consider adding a function to api.js for this
+// fetch to the backend to get all the products of the given category
+// consider adding a function to api.js for this
 async function handleCategoryButtonClick(category) {
 	const productsContainer = document.getElementById("products");
 	productsContainer.innerHTML = "<p>Loading products...</p>";
 
 	try {
-		const filteredProducts = await fetchProducts(category.id);
+		const filteredProducts = await fetchProducts(category.name);
 		productsContainer.innerHTML = ""; // Clear previous products
 
 		if (filteredProducts.length > 0) {
@@ -46,10 +53,6 @@ async function handleCategoryButtonClick(category) {
 	}
 }
 // currently the handle-button only refreshes the same page w content again basically
-
-// additional eventListener line for loading in the categoryButtons also
-document.addEventListener("DOMContentLoaded", renderCategoryButtons);
-document.addEventListener("DOMContentLoaded", loadProducts);
 
 // Function to fetch and render products
 async function loadProducts() {
