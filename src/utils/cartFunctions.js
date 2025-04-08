@@ -112,7 +112,8 @@ export function getAggregatedCart() {
 	return aggregatedCart
 }
 
-export function renderCart() {
+export function renderCart(id = "") {
+	document.querySelector('.fortsätt')?.remove()
 	const cartTableContainer = document.querySelector('.cart-table-container')
 
 	if (!cartTableContainer) {
@@ -133,6 +134,7 @@ export function renderCart() {
 
 	// create table
 	const cartTable = document.createElement('table')
+	if (id) cartTable.id = id;
 	cartTable.classList.add('cart-table')
 	cartTableContainer.append(cartTable)
 
@@ -200,6 +202,7 @@ export function renderCart() {
 	cartTableContainer.insertAdjacentElement('afterend', continueBtn)
 }
 
+
 async function handleCheckout() {
-    alert("Not yet implemented")
+    window.location.href = "/checkout.html"
 }

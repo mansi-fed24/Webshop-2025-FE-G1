@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hakim Livs</title>
+    <link rel="stylesheet" href="/style/style.css" />
+    <link rel="stylesheet" href="/style/checkout.css">
+  </head>
+  <body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <nav>
+        <a href="index.html" class="logo">Hakim Livs</a>
+        <ul class="nav-links">
+          <li><a href="products.html">Products</a></li>
+          <li>
+            <a href="cart.html" class="cart-link">
+              <img src="./public/cart.svg" alt="cart icon">
+              <span class="cart-count"></span>
+            </a>
+          </li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="admin/admin-Product.html">admin-Product</a></li>
+        </ul>
+      </nav>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <h1>Beställ</h1>
+      <p>
+        Har du ett konto?
+        <a href="/login.html">Logga in</a>.
+      </p> <br>
+
+      <!-- ATTN developers: Press CTRL+m in your browser to autofill the form data with test data -->
+
+      <form>
+        <div class="mini-cart-container"></div>
+        <a href="/cart.html">Redigera korg</a>
+        <br><br>
+
+        <label>
+            <span>Förnamn</span>
+            <input type="text" name="firstName">
+        </label>
+        <label>
+            <span>Efternamn</span>
+            <input type="text" name="lastName">
+        </label>
+        <label>
+            <span>Email</span>
+            <input type="text" name="email">
+        </label>
+        <label>
+            <span>Gatuadress</span>
+            <input type="text" name="streetAddress">
+        </label>
+        <label>
+            <span>Kommun</span>
+            <input type="text" name="city">
+        </label>
+        <label>
+            <span>Postnummer</span>
+            <input type="text" name="postcode">
+        </label>
+        <label>
+            <span>Telefonnummer</span>
+            <input type="text" name="phoneNumber">
+        </label>
+        <button>
+            Beställ
+        </button>
+      </form>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>&copy; 2024 Hakim Livs. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/terms">Terms</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- PAGE-SPECIFIC JAVASCRIPT -->
+    <script type="module" src="./src/scripts/checkout.js"></script>
+  </body>
+</html>
