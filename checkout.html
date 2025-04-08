@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hakim Livs</title>
     <link rel="stylesheet" href="/style/style.css" />
-    <link rel="stylesheet" href="/style/cart.css">
+    <link rel="stylesheet" href="/style/checkout.css">
   </head>
   <body>
 
@@ -30,14 +30,51 @@
 
     <!-- MAIN CONTENT -->
     <main class="main-content">
-      <h1>Din korg</h1>
+      <h1>Beställ</h1>
       <p>
         Har du ett konto?
         <a href="/login.html">Logga in</a>.
-      </p>
-      <div class="cart-table-container">
-        <!-- Rendered in cartFunctions.js via cart.js -->
-      </div>
+      </p> <br>
+
+      <!-- ATTN developers: Press CTRL+m in your browser to autofill the form data with test data -->
+
+      <form>
+        <div class="mini-cart-container"></div>
+        <a href="/cart.html">Redigera korg</a>
+        <br><br>
+
+        <label>
+            <span>Förnamn</span>
+            <input type="text" name="firstName">
+        </label>
+        <label>
+            <span>Efternamn</span>
+            <input type="text" name="lastName">
+        </label>
+        <label>
+            <span>Email</span>
+            <input type="text" name="email">
+        </label>
+        <label>
+            <span>Gatuadress</span>
+            <input type="text" name="streetAddress">
+        </label>
+        <label>
+            <span>Kommun</span>
+            <input type="text" name="city">
+        </label>
+        <label>
+            <span>Postnummer</span>
+            <input type="text" name="postcode">
+        </label>
+        <label>
+            <span>Telefonnummer</span>
+            <input type="text" name="phoneNumber">
+        </label>
+        <button>
+            Beställ
+        </button>
+      </form>
     </main>
 
     <!-- FOOTER -->
@@ -53,6 +90,6 @@
     </footer>
 
     <!-- PAGE-SPECIFIC JAVASCRIPT -->
-    <script type="module" src="./src/scripts/cart.js"></script>
+    <script type="module" src="./src/scripts/checkout.js"></script>
   </body>
 </html>

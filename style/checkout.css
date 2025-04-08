@@ -1,0 +1,19 @@
+label {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-bottom: 1rem;
+}
+
+input {
+    padding: .5rem;
+}
+
+.product {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    font-size: .9em;
+}
+
+.product *, p {
+    margin: 0;
+}
