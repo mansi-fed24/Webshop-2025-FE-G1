@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
   const closeBtn = document.querySelector(".close");
   const togglePassword = document.getElementById("togglePassword");
@@ -9,19 +7,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Close login form and navigate to index.html when cross is clicked
   closeBtn.addEventListener("click", () => {
     // Redirect to index.html
-    window.location.href = "index.html"; 
+    window.location.href = "index.html";
     // Hide the login popup
     loginPopup.style.display = "none";
   });
 
   togglePassword.addEventListener("click", function () {
-    const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+    const type =
+      passwordField.getAttribute("type") === "password" ? "text" : "password";
     passwordField.setAttribute("type", type);
     this.classList.toggle("fa-eye");
     this.classList.toggle("fa-eye-slash");
- });
-  
-
-  
-
+  });
 });

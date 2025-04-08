@@ -3,6 +3,7 @@ import {
   addProductToCart,
   updateDOMWithCartData,
 } from "../utils/cartFunctions.js";
+import { toggleAdminLink } from "../utils/api.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   updateDOMWithCartData();
@@ -12,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", () => {
   renderCategoryButtons();
   loadProducts();
+  toggleAdminLink();
 });
 
 function createCategoryButton(category) {
