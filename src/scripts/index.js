@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Function to fetch and render products
 async function loadProducts() {
   const productsContainer = document.getElementById("products");
-  productsContainer.innerHTML = "<p>Loading products...</p>"; // Temporary message while loading
+  productsContainer.innerHTML = "<p>&nbsp; Laddar produkter... </p>"; // Temporary message while loading
 
   try {
     const products = await fetchProducts();
@@ -29,11 +29,11 @@ async function loadProducts() {
         productsContainer.appendChild(productCard);
       });
     } else {
-      productsContainer.innerHTML = "<p>No products available.</p>";
+      productsContainer.innerHTML = "<p>Inga produkter tillgängliga.</p>";
     }
   } catch (error) {
     console.error("Error fetching products:", error);
-    productsContainer.innerHTML = "<p>Failed to load products.</p>";
+    productsContainer.innerHTML = "<p class=`error-msg`>🤷 Något gick fel vid inladdning av produkterna. </p>";
   }
 }
 
@@ -45,7 +45,7 @@ function createProductCard(product) {
   element.innerHTML = `
     <h3>${product.name}</h3>
     <p>${product.price.toFixed(2)} kr</p>
-    <button class="add-to-cart-btn">Add to Cart</button>
+    <button class="add-to-cart-btn">Lägg i varukorg</button>
   `;
 
   element.querySelector(".add-to-cart-btn").addEventListener("click", () => {
