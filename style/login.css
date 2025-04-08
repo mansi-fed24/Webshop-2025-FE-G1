@@ -78,16 +78,7 @@
     border-radius: 5px;
 }
 
-  #togglePassword {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #666;
-    z-index: 1;
-  }
-
+  
   button {
     width: 100%;
     padding: 12px;
@@ -123,4 +114,19 @@
     margin: 20px 0;
   }
 
+  #registerPopup {
+    display: none;
+  }
+
+  .password-container i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+    z-index: 1;
+  }
+
+  
  
