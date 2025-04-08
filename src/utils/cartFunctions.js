@@ -126,7 +126,7 @@ export function renderCart() {
 	// handle empty cart
 	if (products.length < 1) {
 		cartTableContainer.innerHTML = `
-			<h3>Your cart is empty</h3>
+			<h3>Din varukorg är tom.</h3>
 		`
 		return
 	}
