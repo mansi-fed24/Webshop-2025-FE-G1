@@ -54,3 +54,27 @@ function createProductCard(product) {
 
   return element;
 }
+
+// display the user's email and admin status
+// in the welcome message
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const email = localStorage.getItem("userEmail");
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
+  
+  const welcomeMsg = document.getElementById("welcomeMessage");
+  
+  if (email) {
+    welcomeMsg.textContent = `Inloggad som: ${email}`;
+
+    const adminLink = document.getElementById("admin-link");
+    if (isAdmin) {
+      // Show admin panel 
+      adminLink.style.display = "block";
+    } else {
+      // Hide it if user is not admin
+      adminLink.style.display = "none";
+    }
+  }
+});

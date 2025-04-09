@@ -20,6 +20,48 @@ document.addEventListener("DOMContentLoaded", () => {
     this.classList.toggle("fa-eye");
     this.classList.toggle("fa-eye-slash");
   });
+
+  // Handle login form submission
+  const loginForm = document.getElementById("loginForm");
+
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+  const email = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value;
+
+  try {
+    const response = await fetch("https://webshop-2025-be-g1-blush.vercel.app/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-dev-api-key": "jonatan"
+      },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(`Inloggning misslyckades: ${data.message || response.statusText}`);
+      return;
+    }
+
+    // Store token and user info in localStorage
+    localStorage.setItem("token", data.token);  // if it returns token directly
+    localStorage.setItem("userEmail", data.email);
+    localStorage.setItem("isAdmin", data.isAdmin);
+
+    // Redirect to index.html
+    window.location.href = "index.html";
+  } catch (err) {
+    console.error("Nätverksfel:", err);
+    alert("Nätverksfel. Försök igen senare.");
+  }
+});
+
+
+
 });
 
 // registeration form
@@ -82,7 +124,8 @@ const registerForm = document.getElementById("registerForm");
 registerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const name = document.getElementById("registerName").value.trim();
+  const firstName = document.getElementById("registerFirstName").value.trim();
+  const lastName = document.getElementById("registerLastName").value.trim();
   const email = document.getElementById("registerEmail").value.trim();
   const password = document.getElementById("registerPassword").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
@@ -95,15 +138,26 @@ registerForm.addEventListener("submit", async (e) => {
 
   //  2. Send registration request to backend
   try {
-    const response = await fetch("/api/register", {
+    const response = await fetch("https://webshop-2025-be-g1-blush.vercel.app/api/auth/signup", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password })
+      headers: {
+        "Content-Type": "application/json",
+        "x-dev-api-key": "jonatan"
+      },
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+        password
+      })
     });
 
+    const data = await response.json();
+    console.log(data);
+    
+
     if (!response.ok) {
-      const data = await response.json();
-      alert(`Fel vid registrering: ${data.message}`);
+      alert(`Fel vid registrering: ${data.message || response.statusText}`);
       return;
     }
 
