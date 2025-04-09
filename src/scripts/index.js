@@ -57,6 +57,7 @@ function createProductCard(product) {
 
 // display the user's email and admin status
 // in the welcome message
+// and show/hide the admin panel link accordingly
 
 
 document.addEventListener("DOMContentLoaded", () => {
