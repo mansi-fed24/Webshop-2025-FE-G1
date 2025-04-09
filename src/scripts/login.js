@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Handle login form submission
   const loginForm = document.getElementById("loginForm");
 
-  loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+ loginForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
   const email = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value;
@@ -40,25 +40,62 @@ document.addEventListener("DOMContentLoaded", () => {
       body: JSON.stringify({ email, password })
     });
 
-    const data = await response.json();
+    const text = await response.text(); // Get the response as text
+    
+    console.log("Response Text:", text);
 
     if (!response.ok) {
+      let data;
+      try {
+        data = JSON.parse(text); // Attempt to parse the text as JSON
+      } catch (error) {
+        console.error("Failed to parse response as JSON:", error);
+        alert(`Inloggning misslyckades: ${response.statusText}`);
+        return;
+      }
+      console.log("Error Data:", data); // Log the error data for debugging
+ 
       alert(`Inloggning misslyckades: ${data.message || response.statusText}`);
       return;
     }
 
-    // Store token and user info in localStorage
-    localStorage.setItem("token", data.token);  // if it returns token directly
-    localStorage.setItem("userEmail", data.email);
-    localStorage.setItem("isAdmin", data.isAdmin);
+    const data = JSON.parse(text); // Now parse the text as JSON
 
-    // Redirect to index.html
-    window.location.href = "index.html";
-  } catch (err) {
-    console.error("Nätverksfel:", err);
-    alert("Nätverksfel. Försök igen senare.");
-  }
-});
+    //   1: Store token in localStorage
+    localStorage.setItem("hakim-livs-token", data.token);
+  
+
+       //  2: Fetch user info from /api/auth/me using the token
+       const meResponse = await fetch("https://webshop-2025-be-g1-blush.vercel.app/api/auth/me", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "hakim-livs-token": data.token
+        }
+      });
+  
+      if (!meResponse.ok) {
+        console.error("Misslyckades att hämta användarinfo.");
+        alert("Kunde inte hämta användarinformation.");
+        return;
+      }
+  
+      const meData = await meResponse.json();
+      console.log("User Info:", meData);
+  
+      // 3: Store additional user data
+      localStorage.setItem("userEmail", meData.email);
+      localStorage.setItem("isAdmin", meData.isAdmin);
+      localStorage.setItem("firstName", meData.firstName);
+      localStorage.setItem("lastName", meData.lastName);
+  
+      // 4: Redirect to home
+      window.location.href = "index.html";
+    } catch (err) {
+      console.error("Nätverksfel:", err);
+      alert("Nätverksfel. Försök igen senare.");
+    }
+  });
 
 
 
@@ -151,6 +188,7 @@ registerForm.addEventListener("submit", async (e) => {
         password
       })
     });
+    const text = await response.text(); // Get the response as text
 
     const data = await response.json();
     console.log(data);
@@ -162,6 +200,8 @@ registerForm.addEventListener("submit", async (e) => {
     }
 
     //  3. On success, switch to login view
+    // Store token in localStorage
+    localStorage.setItem("hakim-livs-token", data.token); // Store the token here
     alert("Konto skapat! Du kan nu logga in.");
     registerForm.reset();
     document.getElementById("registerFormWrapper").style.display = "none";

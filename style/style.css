@@ -142,3 +142,13 @@ body {
   text-decoration: none;
   color: black;
 }
+ 
+#welcomeMessage {
+  
+  font-size: 1.2rem;
+  font-style: italic;
+  color: rgb(187, 4, 4);
+  font-weight: 700;
+  
+  margin-top: 2rem;
+}

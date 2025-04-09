@@ -60,13 +60,14 @@ function createProductCard(product) {
 
 
 document.addEventListener("DOMContentLoaded", () => {
+  const firstName = localStorage.getItem("firstName");
   const email = localStorage.getItem("userEmail");
   const isAdmin = localStorage.getItem("isAdmin") === "true";
   
   const welcomeMsg = document.getElementById("welcomeMessage");
   
-  if (email) {
-    welcomeMsg.textContent = `Inloggad som: ${email}`;
+  if (firstName && email) {
+    welcomeMsg.textContent = `Inloggad som: ${firstName} (${email})`;
 
     const adminLink = document.getElementById("admin-link");
     if (isAdmin) {
