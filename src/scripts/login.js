@@ -188,9 +188,9 @@ registerForm.addEventListener("submit", async (e) => {
         password
       })
     });
-    const text = await response.text(); // Get the response as text
-
-    const data = await response.json();
+    
+    const data = await response.json(); // Get the response as JSON
+    
     console.log(data);
     
 
