@@ -57,6 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("productForm").addEventListener("submit", async function (event) {
     event.preventDefault(); // Prevent default form submission
 
+    const submitButton = event.submitter; //This gives the actual button used to submit..this is important so that we can diable it so that the user can't double click it
+    submitButton.disabled = true; // Disable to prevent double-click and multiple submissions
+
     // Get product ID from the hidden field (if editing)
     const productId = document.getElementById("productForm").getAttribute("data-id");
 
@@ -105,6 +108,8 @@ document.getElementById("productForm").addEventListener("submit", async function
     } catch (error) {
         console.error("Error adding product:", error);
         alert("Error adding product. Please try again.");
+    } finally {
+        submitButton.disabled = false; // Re-enable button
     }
 });
 });
