@@ -178,11 +178,18 @@ const requiredFields = [
             // Attach these right when DOM is loaded
             document.getElementById("closeModal").onclick = closeModal;
             document.getElementById("goToIndex").onclick = closeModal;
-
-       
-
     
+  
     
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
+  const adminLink = document.getElementById("admin-link");
+
+  if (adminLink) {
+    adminLink.style.display = isAdmin ? "block" : "none";
+  }
 });
 
 
