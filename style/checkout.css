@@ -25,31 +25,69 @@ input {
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    width: 100vw; 
+    height: 100vh; 
+    
     background-color: rgba(0,0,0,0.4); 
+    
+    
 }
 
 .modal-content {
     background-color: #fefefe;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    width: 50%; 
+    min-width: 300px;
+    max-width: 600px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.modal-content h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.modal-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #555;
 }
 
 .close-button {
     color: #aaa;
     float: right;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .close-button:hover,
 .close-button:focus {
-    color: black;
+    color: #333;
     text-decoration: none;
     cursor: pointer;
+}
+
+#goToIndex {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+#goToIndex:hover {
+    background-color: #0056b3;
 }
 

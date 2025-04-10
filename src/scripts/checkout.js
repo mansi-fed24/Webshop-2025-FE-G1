@@ -165,21 +165,25 @@ const requiredFields = [
             console.error(" Error placing order:", err.message);
             alert("Kunde inte skicka beställningen. Försök igen.");
           }
+        }
 
 
+        // Function to close the confirmation modal window
+        function closeModal() {
+            document.getElementById("orderConfirmationModal").style.display = "none";
+            window.location.href = "index.html"; // Redirect to index page
+        }
 
+        document.addEventListener("DOMContentLoaded", () => {
+            // Attach these right when DOM is loaded
+            document.getElementById("closeModal").onclick = closeModal;
+            document.getElementById("goToIndex").onclick = closeModal;
 
+       
 
     
-
     
-
-
-
-
-
-    
-}
+});
 
 
 
