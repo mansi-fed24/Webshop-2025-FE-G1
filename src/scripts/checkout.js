@@ -15,6 +15,8 @@ document.addEventListener('keyup', e => {
         autofillFormWithTestData()
     }
 })
+
+// 1: Handle form submission when user clicks "Beställ"
 form.addEventListener('submit', handleCheckout)
 
 function renderCheckoutForm() {
@@ -62,23 +64,108 @@ function autofillFormWithTestData() {
 
 async function handleCheckout(e) {
     e.preventDefault()
+    console.log(" Form submitted — ready to process order");
+    
+    // 2: Validate the required fields before sending the request
+const requiredFields = [
+    'firstName',
+    'lastName',
+    'email',
+    'streetAddress',
+    'city',
+    'postcode',
+    'phoneNumber'
+  ];
+  
+    for (const name of requiredFields) {
+        const value = form[name].value.trim();
+        if (!value) {
+        alert(`Vänligen fyll i: ${name}`); 
+        return;
+        }
+    }
+  // 3: Ensure the cart is not empty
+  // as the restrictions are already there empty cart will not open but we double-check here for safety in case localStorage was cleared or corrupted
+    const { products } = getAggregatedCart();
 
-    // validate form
+    if (!products || products.length === 0) {
+    alert("Din varukorg är tom. Lägg till produkter innan du beställer."); // "Your cart is empty"
+    return;
+    }
+
+    // 4A: Extract the User id (if logged in)
+    localStorage.getItem('hakim-livs-token')
+
+    function getUserIdFromToken() {
+        const token = localStorage.getItem('hakim-livs-token');
+        if (!token) return null;
+        try {
+          const payload = JSON.parse(atob(token.split('.')[1]));
+          return payload._id;
+        } catch (err) {
+          console.error("Invalid token:", err);
+          return null;
+        }
+      }
+      
+      // 4B: Build the request payload and include the user id if available
+        const userId = getUserIdFromToken(); // extract user ID from token
+
+        const body = {
+        firstName: form.firstName.value.trim(),
+        lastName: form.lastName.value.trim(),
+        email: form.email.value.trim(),
+        phoneNumber: form.phoneNumber.value.trim(),
+        address: `${form.streetAddress.value.trim()}, ${form.city.value.trim()} ${form.postcode.value.trim()}`,
+        products: products.map(p => ({
+            productId: p._id,
+            quantity: p.quantity
+        }))
+        };
+
+        // Optionally add the user field if logged in
+        if (userId) {
+        body.user = userId;
+        }
+
+        console.log("Final payload to send:", body);
+
+        // 5: Send the POST request and handle success or failure
+
+        try {
+            const res = await fetch('https://webshop-2025-be-g1-blush.vercel.app/api/orders', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(body)
+            });
+          
+            if (!res.ok) {
+              const errorText = await res.text();
+              throw new Error(errorText || 'Något gick fel vid beställningen.'); // “Something went wrong”
+            }
+          
+            const result = await res.json();
+            console.log("Order created successfully:", result);
+          
+            // Optional: Clear cart & redirect to thank-you page
+            localStorage.removeItem("cart");
+            alert("Tack för din beställning!");
+            window.location.href = "/thank-you.html";
+          
+          } catch (err) {
+            console.error(" Error placing order:", err.message);
+            alert("Kunde inte skicka beställningen. Försök igen.");
+          }
 
 
 
-    const { products } = getAggregatedCart()
 
-    const body = JSON.stringify({
-        firstName: form.firstName.value,
-        lastName: form.lastName.value,
-        email: form.email.value,
-        phoneNumber: form.phoneNumber.value,
-        address: `${form.streetAddress.value}, ${form.city.value} ${form.postcode.value}`,
-        products: products.map(p => ({productId: p._id, quantity: p.quantity}))
-    }, null, 2)
 
-    console.log(body)
+    
+
+    
 
     // handle http
 
@@ -86,3 +173,10 @@ async function handleCheckout(e) {
 
     
 }
+
+
+//new task---when i click Beställ then POST request is sent to create order API
+// POST request to create order
+
+
+
