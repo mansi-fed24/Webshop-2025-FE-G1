@@ -148,11 +148,17 @@ const requiredFields = [
           
             const result = await res.json();
             console.log("Order created successfully:", result);
+
+            // Show the order confirmation modal
+            document.getElementById("orderNumber").textContent = result.orderNumber; 
+            document.getElementById("userEmail").textContent = form.email.value.trim();
+            document.getElementById("orderConfirmationModal").style.display = "block";
+
           
-            // Optional: Clear cart & redirect to thank-you page
+            // Optional: Clear cart & alert order confirmation
             localStorage.removeItem("cart");
             alert("Tack för din beställning!");
-            window.location.href = "/thank-you.html";
+           
           
           } catch (err) {
             console.error(" Error placing order:", err.message);
@@ -167,16 +173,13 @@ const requiredFields = [
 
     
 
-    // handle http
+
 
 
 
     
 }
 
-
-//new task---when i click Beställ then POST request is sent to create order API
-// POST request to create order
 
 
 
