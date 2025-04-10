@@ -5,6 +5,16 @@ import {
 
 // DOM
 const form = document.querySelector('form')
+
+// Auto-fill form with data from localStorage if user is logged in
+const firstName = localStorage.getItem("firstName");
+const lastName = localStorage.getItem("lastName");
+const email = localStorage.getItem("userEmail");
+
+if (firstName) form.firstName.value = firstName;
+if (lastName) form.lastName.value = lastName;
+if (email) form.email.value = email;
+
 const miniCartContainer = document.querySelector('.mini-cart-container')
 
 // startup
@@ -155,10 +165,13 @@ const requiredFields = [
             document.getElementById("userEmail").textContent = form.email.value.trim();
             document.getElementById("orderConfirmationModal").style.display = "block";
 
-          
-            // Optional: Clear cart & alert order confirmation
-            localStorage.removeItem("cart");
-            alert("Tack för din beställning!");
+                      
+            // Clear the cart visually and in localStorage 
+            // prevent it from showing again when the user goes back to the cart
+            localStorage.setItem("hakim-livs-cart", JSON.stringify([]));
+            updateDOMWithCartData(); // This updates cart icon etc.
+            alert("Tack för din beställning!"); // alert order confirmation
+            
            
           
           } catch (err) {
@@ -178,19 +191,21 @@ const requiredFields = [
             // Attach these right when DOM is loaded
             document.getElementById("closeModal").onclick = closeModal;
             document.getElementById("goToIndex").onclick = closeModal;
-    
-  
-    
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-  const isAdmin = localStorage.getItem("isAdmin") === "true";
-  const adminLink = document.getElementById("admin-link");
-
-  if (adminLink) {
-    adminLink.style.display = isAdmin ? "block" : "none";
-  }
+              
+      
 });
+       
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const isAdmin = localStorage.getItem("isAdmin") === "true";
+      const adminLink = document.getElementById("admin-link");
+
+      if (adminLink) {
+        adminLink.style.display = isAdmin ? "block" : "none";
+      }
+    });
 
 
 
