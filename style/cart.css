@@ -74,3 +74,16 @@ button {
     font-size: 1.5rem;
     margin-top: 1rem;
 }
+
+/*welcome loginmsg*/
+#loginStatus {
+  
+    font-size: 1.2rem;
+    font-style: italic;
+    color: rgb(187, 4, 4);
+    font-weight: 700;
+    
+    margin-top: 2rem;
+  }
+
+
