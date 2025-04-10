@@ -148,9 +148,10 @@ const requiredFields = [
           
             const result = await res.json();
             console.log("Order created successfully:", result);
+            
 
             // Show the order confirmation modal
-            document.getElementById("orderNumber").textContent = result.orderNumber; 
+            document.getElementById("orderNumber").textContent = result.orderID; 
             document.getElementById("userEmail").textContent = form.email.value.trim();
             document.getElementById("orderConfirmationModal").style.display = "block";
 
