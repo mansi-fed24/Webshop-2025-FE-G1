@@ -34,10 +34,38 @@ export async function fetchCategories(endpoint = "api/categories") {
 export function isAdmin() {
   return localStorage.getItem("isAdmin") === "true";
 }
-export function toggleAdminLink() {
-  const adminLink = document.getElementById("admin-link");
-  const isAdmin = localStorage.getItem("isAdmin") === "true";
-  if (!isAdmin && adminLink) {
-    adminLink.style.display = "none";
+
+export async function toggleAdminLink() {
+  const res = await fetch(getBaseUrl() + "api/auth/me", {
+    headers: {
+      "hakim-livs-token": localStorage.getItem('hakim-livs-token')
+    }
+  })
+  
+  const data = await res.json()
+
+  const loginLi = document.getElementById('login-li')
+  const adminLi = document.getElementById('admin-li')
+
+  if (!data.isAdmin && adminLi) {
+    adminLi.style.display = 'none'
   }
+
+  if (data._id) {
+    // logged in
+    const logOutButton = document.createElement('button')
+    logOutButton.innerText = "Logga ut"
+    logOutButton.addEventListener('click', logOut)
+    loginLi.innerHTML = ""
+    loginLi.append(logOutButton)
+  }
+}
+
+function logOut() {
+  localStorage.removeItem('hakim-livs-token')
+  localStorage.removeItem('isAdmin')
+  localStorage.removeItem('firstName')
+  localStorage.removeItem('lastName')
+  localStorage.removeItem('userEmail')
+  window.location.reload()
 }
