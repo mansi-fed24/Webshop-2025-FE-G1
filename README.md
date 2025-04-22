@@ -53,6 +53,49 @@ Useful Links:
 ├── css/                     # Contains CSS files for each page
 ```
 
+## 🔧 Feature Breakdown
+
+### 🔐 Admin Panel
+- Developed a secure admin interface accessible only to authenticated admins.
+- Implemented functionalities to **add, edit, and delete products**.
+
+**Files involved:**
+- `admin-product.html`
+- `admin-product.css`
+- `admin-product.js`
+- `admin-addproduct.js`
+
+### 👤 Authentication & User Management
+- Created a login system allowing users to authenticate and access personalized features.
+- Displayed logged-in user info across pages (e.g., `Inloggad som:`).
+
+**Files involved:**
+- `login.html`
+- `login.css`
+- `login.js`
+
+### 🛍️ Shopping Cart & Checkout
+- Users can add, view, and manage products in their cart.
+- Checkout includes form validation and order confirmation.
+
+**Files involved:**
+- `cart.js`, `checkout.js`
+- `cart.html`, `checkout.html`
+
+### 🏠 Homepage & Product Display
+- Dynamically loaded products on homepage and product listing pages.
+- Enabled seamless navigation and product interaction.
+
+**Files involved:**
+- `index.js`, `products.js`
+- `index.html`, `products.html`
+
+### 🎨 Styling
+- Applied consistent styling across all pages for better UI/UX.
+
+**Files involved:**
+- `admin-product.css`, `login.css`, `cart.css`, `checkout.css`, `index.css`, `products.css`
+
 ## ⚖️ Admin Functionality
 
 - Admin users can:
@@ -65,15 +108,12 @@ Useful Links:
 **Located in**: `utils/cartFunctions.js`, `utils/api.js`
 
 ### `updateDOMWithCartData()`
-
 - Syncs cart content between localStorage and the UI.
 
 ### `getAggregatedCart()`
-
 - Returns full cart details with quantities, subtotals, and total.
 
 ### `toggleAdminLink()`
-
 - Shows/hides the admin panel link based on login status and user role.
 
 ## ⚠ Points of Improvement
@@ -100,7 +140,7 @@ None used for frontend in local setup.
 2. Use VS Code + Live Server or any other server to open `index.html`.
 3. Log in using:
    - Admin credentials to access admin panel.
-   - user register and login 
+   - user register and login 
    - Or continue as guest.
 
 ## 📅 Final Note
